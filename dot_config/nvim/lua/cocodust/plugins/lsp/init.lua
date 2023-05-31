@@ -1,0 +1,192 @@
+local function on_attach(client, bufnr)
+	require("cocodust.plugins.lsp.keymaps").on_attach(client, bufnr)
+	require("cocodust.plugins.lsp.formatting").on_attach(client, bufnr)
+
+	if client.server_capabilities.documentSymbolProvider then
+		require("nvim-navic").attach(client, bufnr)
+	end
+end
+
+-- needed to fix omnisharp for whatever reason
+local function fix_tokens(client)
+	local function to_snake_case(str)
+		return string.gsub(str, "%s*[- ]%s*", "_")
+	end
+	local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+	for i, v in ipairs(tokenModifiers) do
+		tokenModifiers[i] = to_snake_case(v)
+	end
+	local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+	for i, v in ipairs(tokenTypes) do
+		tokenTypes[i] = to_snake_case(v)
+	end
+end
+
+return {
+	-- lspconfig
+	{
+		"neovim/nvim-lspconfig",
+		event = "BufReadPre",
+		dependencies = {
+			"mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"cmp-nvim-lsp",
+			"b0o/schemastore.nvim",
+			"Hoffs/omnisharp-extended-lsp.nvim",
+		},
+		opts = {
+			-- options for vim.diagnostic.config()
+			diagnostics = {
+				underline = true,
+				virtual_text = false,
+				severity_sort = true,
+			},
+			servers = {
+				lua_ls = {},
+				omnisharp = {},
+				jsonls = {
+					settings = {
+						json = {
+							validate = { enable = true },
+						},
+					},
+				},
+			},
+			-- you can do any additional lsp server setup here
+			-- return true if you don't want this server to be setup with lspconfig
+			setup = {
+				omnisharp = function(client, opts)
+					local pid = vim.fn.getpid()
+					local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/packages/omnisharp/omnisharp"
+					opts.handlers = {
+						["textDocument/definition"] = require("omnisharp_extended").handler,
+					}
+					opts.cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) }
+					opts.on_attach = function(client, bufnr)
+						fix_tokens(client)
+						on_attach(client, bufnr)
+					end
+				end,
+				jsonls = function(client, opts)
+					opts.settings.json.schemas = require("schemastore").json.schemas()
+					opts.on_attach = function(client, bufnr)
+						local tokenModifiers = client.server_capabilities.semanticTokensProvider.legend.tokenModifiers
+						for i, v in ipairs(tokenModifiers) do
+							tokenModifiers[i] = v:gsub(" ", "_")
+						end
+						local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+						for i, v in ipairs(tokenTypes) do
+							tokenTypes[i] = v:gsub(" ", "_")
+						end
+						on_attach(client, bufnr)
+					end
+				end,
+				lua_ls = function(client, opts)
+					-- TODO: Only add this global if in neovim configs
+					opts.settings = {
+						Lua = {
+							diagnostics = {
+								globals = { "vim" },
+							},
+						},
+					}
+					opts.on_attach = on_attach
+				end,
+				["*"] = function(client, opts)
+					opts.on_attach = on_attach
+				end,
+			},
+		},
+		config = function(plugin, opts)
+			-- diagnostics
+			vim.diagnostic.config(opts.diagnostics)
+
+			local servers = opts.servers
+			local capabilities =
+				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+			local function setup(server)
+				local server_opts = servers[server] or {}
+				server_opts.capabilities = capabilities
+				if opts.setup[server] then
+					if opts.setup[server](server, server_opts) then
+						return
+					end
+				elseif opts.setup["*"] then
+					if opts.setup["*"](server, server_opts) then
+						return
+					end
+				end
+				require("lspconfig")[server].setup(server_opts)
+			end
+
+			local mlsp = require("mason-lspconfig")
+			local available = mlsp.get_available_servers()
+
+			local ensure_installed = {}
+			for server, server_opts in pairs(servers) do
+				if server_opts then
+					server_opts = server_opts == true and {} or server_opts
+					-- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+					if server_opts.mason == false or not vim.tbl_contains(available, server) then
+						setup(server)
+					else
+						ensure_installed[#ensure_installed + 1] = server
+					end
+				end
+			end
+
+			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
+			require("mason-lspconfig").setup_handlers({ setup })
+		end,
+	},
+
+	-- formatters
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		event = "BufReadPre",
+		dependencies = { "mason.nvim" },
+		opts = function()
+			local nls = require("null-ls")
+			return {
+				sources = {
+					nls.builtins.formatting.prettierd,
+					nls.builtins.formatting.shellharden,
+					nls.builtins.formatting.stylua,
+					nls.builtins.diagnostics.codespell,
+					nls.builtins.diagnostics.gitlint,
+					nls.builtins.diagnostics.jsonlint,
+					nls.builtins.diagnostics.yamllint,
+				},
+			}
+		end,
+	},
+
+	-- cmdline tools and lsp servers
+	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		opts = {
+			ensure_installed = {
+				"prettierd",
+				"shellharden",
+				"stylua",
+				"codespell",
+				"gitlint",
+				"jsonlint",
+				"yamllint",
+			},
+		},
+		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "[C]heck [M]ason" } },
+		config = function(plugin, opts)
+			require("mason").setup(opts)
+			local mr = require("mason-registry")
+			for _, tool in ipairs(opts.ensure_installed) do
+				local p = mr.get_package(tool)
+				if not p:is_installed() then
+					p:install()
+				end
+			end
+		end,
+	},
+}

@@ -1,0 +1,1 @@
+export BICEP_CACHE_DIRECTORY="$XDG_CACHE_HOME"/bicep/cache
