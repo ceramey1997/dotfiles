@@ -8,6 +8,11 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash"
 fi
 
+# Setup Brew
+if [ -f "$XDG_CONFIG_HOME/bash/programs/brew/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/brew/init.bash"
+fi
+
 # Setup csharp 
 if [ -f "$XDG_CONFIG_HOME/bash/programs/csharp/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/csharp/init.bash"
