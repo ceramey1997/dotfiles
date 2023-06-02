@@ -18,9 +18,14 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/csharp/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/csharp/init.bash"
 fi
 
-# Setup kube
-if [ -f "$XDG_CONFIG_HOME/bash/programs/kube/init.bash" ]; then
-    . "$XDG_CONFIG_HOME/bash/programs/kube/init.bash"
+# Setup docker_aws_azure
+# if [ -f "$XDG_CONFIG_HOME/bash/programs/docker_aws_azure/init.bash" ]; then
+#     . "$XDG_CONFIG_HOME/bash/programs/docker_aws_azure/init.bash"
+# fi
+
+# Setup git
+if [ -f "$XDG_CONFIG_HOME/bash/programs/git/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/git/init.bash"
 fi
 
 # Setup kube
