@@ -161,12 +161,18 @@ return {
 			return {
 				sources = {
 					nls.builtins.formatting.prettierd,
+					nls.builtins.diagnostics.eslint_d.with({
+						diagnostics_format = "[eslint] #{m}\n(@{c})",
+					}),
 					nls.builtins.formatting.shellharden,
 					nls.builtins.formatting.stylua,
 					nls.builtins.diagnostics.codespell,
 					nls.builtins.diagnostics.gitlint,
 					nls.builtins.diagnostics.jsonlint,
 					nls.builtins.diagnostics.yamllint,
+				},
+				groups = {
+					vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false }),
 				},
 			}
 		end,
