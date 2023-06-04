@@ -12,6 +12,9 @@ return {
 			autotag = {
 				enable = true,
 			},
+			matchup = {
+				enable = true,
+			},
 			auto_install = true,
 			highlight = {
 				enable = true,
