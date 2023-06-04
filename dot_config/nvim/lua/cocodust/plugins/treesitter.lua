@@ -9,9 +9,9 @@ return {
 			{ "<bs>", desc = "Shrink selection", mode = "x" },
 		},
 		opts = {
-			-- autotag = {
-			-- 	enable = true,
-			-- },
+			autotag = {
+				enable = true,
+			},
 			auto_install = true,
 			highlight = {
 				enable = true,

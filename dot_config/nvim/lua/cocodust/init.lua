@@ -46,4 +46,7 @@ require("lazy").setup("cocodust.plugins", {
 			},
 		},
 	},
+	spec = {
+		{ import = "lazyvim.plugins.extras.lang.tailwind" },
+	},
 })
