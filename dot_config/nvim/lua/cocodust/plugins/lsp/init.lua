@@ -161,9 +161,6 @@ return {
 			return {
 				sources = {
 					nls.builtins.formatting.prettierd,
-					nls.builtins.diagnostics.eslint_d.with({
-						diagnostics_format = "[eslint] #{m}\n(@{c})",
-					}),
 					nls.builtins.formatting.shellharden,
 					nls.builtins.formatting.stylua,
 					nls.builtins.diagnostics.codespell,
