@@ -58,13 +58,13 @@ return {
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig
 			setup = {
-				tailwindcss = function(client, opts)
-					local tw = require("lspconfig.server_configurations.tailwindcss")
-					-- @param ft string
-					opts.filetypes = vim.tbl_filter(function(ft)
-						return not vim.tbl_contains(opts.filetypes_exlude or {}, ft)
-					end, tw.default_config.filetypes)
-				end,
+				-- tailwindcss = function(client, opts)
+				-- 	local tw = require("lspconfig.server_configurations.tailwindcss")
+				-- 	-- @param ft string
+				-- 	opts.filetypes = vim.tbl_filter(function(ft)
+				-- 		return not vim.tbl_contains(opts.filetypes_exlude or {}, ft)
+				-- 	end, tw.default_config.filetypes)
+				-- end,
 				omnisharp = function(client, opts)
 					local pid = vim.fn.getpid()
 					local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/packages/omnisharp/omnisharp"
@@ -150,6 +150,21 @@ return {
 			require("mason-lspconfig").setup_handlers({ setup })
 		end,
 	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		lazy = false,
+		config = function()
+			require("colorizer").setup({
+				user_default_optiions = {
+					tailwind = true,
+				},
+				filetypes = {
+					"css",
+					"vue",
+				},
+			})
+		end,
+	},
 
 	-- formatters
 	{
@@ -213,13 +228,5 @@ return {
 				ensure_installed()
 			end
 		end,
-	},
-	{
-		"NvChad/nvim-colorizer.lua",
-		opts = {
-			user_default_options = {
-				tailwind = true,
-			},
-		},
 	},
 }
