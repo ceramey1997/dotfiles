@@ -154,22 +154,22 @@ return {
 	-- formatters
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		event = "BufReadPre",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "mason.nvim" },
 		opts = function()
 			local nls = require("null-ls")
 			return {
 				sources = {
+					nls.builtins.formatting.fish_indent,
+					nls.builtins.diagnostics.fish,
+					nls.builtins.formatting.stylua,
+					nls.builtins.formatting.shfmt,
 					nls.builtins.formatting.prettierd,
 					nls.builtins.formatting.shellharden,
-					nls.builtins.formatting.stylua,
 					nls.builtins.diagnostics.codespell,
 					nls.builtins.diagnostics.gitlint,
 					nls.builtins.diagnostics.jsonlint,
 					nls.builtins.diagnostics.yamllint,
-				},
-				groups = {
-					vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false }),
 				},
 			}
 		end,
@@ -188,18 +188,38 @@ return {
 				"gitlint",
 				"jsonlint",
 				"yamllint",
+				"css-lsp",
+				"dockerfile-language-server",
+				"typescript-language-server",
+				"vue-language-server",
+				"eslint-lsp",
 			},
 		},
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "[C]heck [M]ason" } },
 		config = function(plugin, opts)
 			require("mason").setup(opts)
 			local mr = require("mason-registry")
-			for _, tool in ipairs(opts.ensure_installed) do
-				local p = mr.get_package(tool)
-				if not p:is_installed() then
-					p:install()
+			local function ensure_installed()
+				for _, tool in ipairs(opts.ensure_installed) do
+					local p = mr.get_package(tool)
+					if not p:is_installed() then
+						p:install()
+					end
 				end
 			end
+			if mr.refresh then
+				mr.refresh(ensure_installed)
+			else
+				ensure_installed()
+			end
 		end,
+	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				tailwind = true,
+			},
+		},
 	},
 }

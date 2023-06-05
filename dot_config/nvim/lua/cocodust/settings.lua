@@ -14,8 +14,11 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+-- search
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
 
