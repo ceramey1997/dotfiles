@@ -78,10 +78,10 @@ return {
 						{
 							"diagnostics",
 							symbols = {
-								error = " ",
-								warn = " ",
-								info = " ",
-								hint = " ",
+								error = "",
+								warn = "",
+								info = "",
+								hint = "",
 							},
 						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
@@ -160,50 +160,52 @@ return {
 		lazy = false,
 		config = function()
 			require("nvim-web-devicons").setup({
-				override = {
-					cs = {
-						icon = "",
-						color = "#007aff",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
-						name = "csharp",
-					},
-					csproj = {
-						icon = "",
-						color = "#890fb0",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
-						name = "csproj",
-					},
-					dockerfile = {
-						icon = "",
-						color = "#ffffff",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
-						name = "dockerfile",
-					},
-				},
+				default = true,
+				strict = true,
+				-- override = {},
 				override_by_filename = {
 					[".prettierrc.json"] = {
 						icon = "",
 						color = "#c595c8",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						cterm_color = "134",
 						name = "prettierrc",
 					},
 					["Tiltfile"] = {
 						icon = "",
-						color = "#70d37b",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						color = "#00af5f",
+						cterm_color = "35",
 						name = "Tiltfile",
 					},
-					["Dockerfile.local"] = { -- not working for some reason
-						icon = "",
-						color = "#ffffff",
-						cterm_color = "20", -- I have NO IDEA about cterm_color's
-						name = "dockerfile",
+					["Dockerfile"] = { -- doesn't work
+						icon = "",
+						color = "#afffff",
+						cterm_color = "159",
+					},
+				},
+				override_by_extension = {
+					["local"] = {
+						icon = "",
+						color = "#de8d14",
+						cterm_color = "172",
+						name = "local_files",
+					},
+					["cs"] = {
+						icon = "",
+						color = "#007aff",
+						cterm_color = "20",
+						name = "csharp",
+					},
+					["csproj"] = {
+						icon = "",
+						color = "#890fb0",
+						cterm_color = "5",
+						name = "csproj",
 					},
 				},
 			})
 		end,
 	},
-	-- filetype glyphs
+	-- filetype glyphs  -- good other 
 	{ "ryanoasis/vim-devicons", lazy = false },
 	-- { "nvim-tree/nvim-web-devicons" },
 

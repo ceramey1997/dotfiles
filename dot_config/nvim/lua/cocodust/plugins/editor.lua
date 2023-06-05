@@ -3,6 +3,11 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		version = "2.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
 		cmd = "NeoTree",
 		keys = {
 			{
@@ -15,6 +20,15 @@ return {
 		},
 		init = function()
 			vim.g.neo_tree_remove_legacy_commands = 1
+
+			vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsSignError" })
+			vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsSignWarning" })
+			vim.fn.sign_define(
+				"LspDiagnosticsSignInformation",
+				{ text = "", texthl = "LspDiagnosticsSignInformation" }
+			)
+			vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "LspDiagnosticsSignHint" })
+
 			if vim.fn.argc() == 1 then
 				local stat = vim.loop.fs_stat(vim.fn.argv(0))
 				if stat and stat.type == "directory" then
@@ -27,6 +41,36 @@ return {
 			filesystem = {
 				bind_to_cwd = false,
 				follow_current_file = true,
+			},
+			default_component_configs = {
+				diagnostics = {
+					symbols = {
+						hint = "",
+						info = "",
+						warn = "",
+						error = "",
+					},
+					highlights = {
+						hint = "DiagnosticSignHint",
+						info = "DiagnosticSignInfo",
+						warn = "DiagnosticSignWarn",
+						error = "DiagnosticSignError",
+					},
+				},
+				git_status = {
+					symbols = {
+						added = "",
+						modified = "",
+						deleted = "✖",
+						renamed = "",
+						-- Status type
+						untracked = "",
+						ignored = "",
+						unstaged = "",
+						staged = "",
+						conflict = "",
+					},
+				},
 			},
 			window = {
 				mappings = {

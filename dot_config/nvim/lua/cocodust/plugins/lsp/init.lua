@@ -34,6 +34,22 @@ return {
 			"b0o/schemastore.nvim",
 			"Hoffs/omnisharp-extended-lsp.nvim",
 		},
+		init = function()
+			vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+			vim.fn.sign_define("DiagnosticSignWarning", { text = " ", texthl = "DiagnosticSignWarning" })
+			vim.fn.sign_define("DiagnosticSignInformation", { text = " ", texthl = "DiagnosticSignInformation" })
+			vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+			vim.diagnostic.config({
+				virtual_text = {
+					source = "always",
+					prefix = "",
+				},
+				severity_sort = true,
+				float = {
+					source = "always",
+				},
+			})
+		end,
 		opts = {
 			-- options for vim.diagnostic.config()
 			diagnostics = {
