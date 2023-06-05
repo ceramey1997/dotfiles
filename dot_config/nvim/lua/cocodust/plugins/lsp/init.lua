@@ -58,13 +58,13 @@ return {
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig
 			setup = {
-				-- tailwindcss = function(client, opts)
-				-- 	local tw = require("lspconfig.server_configurations.tailwindcss")
-				-- 	-- @param ft string
-				-- 	opts.filetypes = vim.tbl_filter(function(ft)
-				-- 		return not vim.tbl_contains(opts.filetypes_exlude or {}, ft)
-				-- 	end, tw.default_config.filetypes)
-				-- end,
+				tailwindcss = function(client, opts)
+					local tw = require("lspconfig.server_configurations.tailwindcss")
+					-- @param ft string
+					opts.filetypes = vim.tbl_filter(function(ft)
+						return not vim.tbl_contains(opts.filetypes_exlude or {}, ft)
+					end, tw.default_config.filetypes)
+				end,
 				omnisharp = function(client, opts)
 					local pid = vim.fn.getpid()
 					local omnisharp_bin = vim.fn.stdpath("data") .. "/mason/packages/omnisharp/omnisharp"
@@ -151,6 +151,7 @@ return {
 		end,
 	},
 	{
+		-- suppose to highlight colors on the color entry. not working with vue
 		"NvChad/nvim-colorizer.lua",
 		lazy = false,
 		config = function()
@@ -163,6 +164,26 @@ return {
 					"vue",
 				},
 			})
+		end,
+	},
+	{
+		-- tailwind color swatches
+		"hrsh7th/nvim-cmp",
+		dependencies = {
+			{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+		},
+		-- opts = function(_, opts)
+		-- 	local format_kinds = opts.formatting.format
+		-- 	opts.formatting.format = function(entry, item)
+		-- 		format_kinds(entry, item) -- add icon
+		-- 		return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+		-- 	end
+		-- end,
+		-- replace below with commented out when figured out icons?
+		opts = function(_, opts)
+			opts.formatting = {
+				format = require("tailwindcss-colorizer-cmp").formatter,
+			}
 		end,
 	},
 

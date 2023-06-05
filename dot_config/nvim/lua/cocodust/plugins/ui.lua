@@ -155,6 +155,44 @@ return {
 
 	-- icons
 	-- Uncomment once (https://github.com/zellij-org/zellij/issues/1538) is resolved
+	{
+		"kyazdani42/nvim-web-devicons",
+		lazy = false,
+		config = function()
+			require("nvim-web-devicons").setup({
+				override = {
+					cs = {
+						icon = "",
+						color = "#007aff",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "csharp",
+					},
+					csproj = {
+						icon = "",
+						color = "#890fb0",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "csproj",
+					},
+					dockerfile = {
+						icon = "",
+						color = "#ffffff",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "dockerfile",
+					},
+				},
+				override_by_filename = {
+					[".prettierrc.json"] = {
+						icon = "",
+						color = "#c595c8",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "prettierrc",
+					},
+				},
+			})
+		end,
+	},
+	-- filetype glyphs
+	{ "ryanoasis/vim-devicons", lazy = false },
 	-- { "nvim-tree/nvim-web-devicons" },
 
 	-- ui components

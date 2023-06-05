@@ -36,6 +36,9 @@ vim.g.mapleader = " "
 
 vim.opt.cursorline = true
 
+-- for dev-icons
+vim.opt.encoding = "UTF-8"
+
 -- Change viminfo home to conform with XDG standards
 local xdg_state = os.getenv("XDG_STATE_HOME")
 vim.opt.viminfofile = string.format("%s/vim/viminfo", xdg_state)
