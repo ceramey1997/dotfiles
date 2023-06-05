@@ -187,6 +187,18 @@ return {
 						cterm_color = "20", -- I have NO IDEA about cterm_color's
 						name = "prettierrc",
 					},
+					["Tiltfile"] = {
+						icon = "",
+						color = "#70d37b",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "Tiltfile",
+					},
+					["Dockerfile.local"] = { -- not working for some reason
+						icon = "",
+						color = "#ffffff",
+						cterm_color = "20", -- I have NO IDEA about cterm_color's
+						name = "dockerfile",
+					},
 				},
 			})
 		end,
