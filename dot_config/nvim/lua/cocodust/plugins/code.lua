@@ -55,4 +55,33 @@ return {
 			}
 		end,
 	},
+	{
+		"Darazaki/indent-o-matic",
+		lazy = false,
+		opts = {
+			-- Number of lines without indentation before giving up (use -1 for infinite)
+			max_lines = 2048,
+			-- Space indentations that should be detected
+			standard_widths = { 2, 4, 8 },
+			-- Skip multi-line comments and strings (more accurate detection but less performant)
+			skip_multiline = true,
+
+			-- Only detect 4 spaces and tabs for csharp files
+			filetype_csharp = {
+				standard_widths = { 4 },
+			},
+			-- Only detect 2 spaces and tabs for Typescript / rust files
+			filetype_typescript = {
+				standard_widths = { 2 },
+			},
+			filetype_vue = {
+				standard_widths = { 2 },
+			},
+
+			-- Don't detect 8 spaces indentations inside files without a filetype
+			filetype_ = {
+				standard_widths = { 2, 4 },
+			},
+		},
+	},
 }
