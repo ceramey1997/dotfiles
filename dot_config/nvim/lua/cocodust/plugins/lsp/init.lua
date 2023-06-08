@@ -1,4 +1,3 @@
-local icons = require("cocodust.icons")
 local function on_attach(client, bufnr)
 	require("cocodust.plugins.lsp.keymaps").on_attach(client, bufnr)
 	require("cocodust.plugins.lsp.formatting").on_attach(client, bufnr)
@@ -36,40 +35,20 @@ return {
 			"Hoffs/omnisharp-extended-lsp.nvim",
 		},
 		init = function()
-			vim.fn.sign_define(
-				"DiagnosticSignError",
-				{ text = icons.Diagnostics.Error.Icon.Line_Error, texthl = "DiagnosticSignError" }
-			)
-			vim.fn.sign_define(
-				"DiagnosticSignWarn",
-				{ text = icons.Diagnostics.Warning.Icon.Solid, texthl = "DiagnosticSignWarn" }
-			)
-			vim.fn.sign_define(
-				"DiagnosticSignInfo",
-				{ text = icons.Diagnostics.Info.Icon.Solid, texthl = "DiagnosticSignInfo" }
-			)
-			vim.fn.sign_define(
-				"DiagnosticSignHint",
-				{ text = icons.Diagnostics.Hint.Icon, texthl = "DiagnosticSignHint" }
-			)
-			vim.diagnostic.config({
-				virtual_text = {
-					source = "always",
-					prefix = "",
-				},
-				severity_sort = true,
-				float = {
-					source = "always",
-				},
-			})
+			require("cocodust.plugins.lsp.handlers").setup()
 		end,
 		opts = {
 			-- options for vim.diagnostic.config()
-			diagnostics = {
-				underline = true,
-				virtual_text = false,
-				severity_sort = true,
-			},
+			-- diagnostics = {
+			-- 	virtual_text = {
+			-- 		source = "always",
+			-- 		prefix = "",
+			-- 	},
+			-- 	severity_sort = true,
+			-- 	float = {
+			-- 		source = "always",
+			-- 	},
+			-- },
 			servers = {
 				lua_ls = {},
 				omnisharp = {},
