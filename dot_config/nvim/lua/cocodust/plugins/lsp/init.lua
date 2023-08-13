@@ -35,28 +35,20 @@ return {
 			"Hoffs/omnisharp-extended-lsp.nvim",
 		},
 		init = function()
-			vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-			vim.fn.sign_define("DiagnosticSignWarning", { text = " ", texthl = "DiagnosticSignWarning" })
-			vim.fn.sign_define("DiagnosticSignInformation", { text = " ", texthl = "DiagnosticSignInformation" })
-			vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
-			vim.diagnostic.config({
-				virtual_text = {
-					source = "always",
-					prefix = "",
-				},
-				severity_sort = true,
-				float = {
-					source = "always",
-				},
-			})
+			require("cocodust.plugins.lsp.handlers").setup()
 		end,
 		opts = {
 			-- options for vim.diagnostic.config()
-			diagnostics = {
-				underline = true,
-				virtual_text = false,
-				severity_sort = true,
-			},
+			-- diagnostics = {
+			-- 	virtual_text = {
+			-- 		source = "always",
+			-- 		prefix = "",
+			-- 	},
+			-- 	severity_sort = true,
+			-- 	float = {
+			-- 		source = "always",
+			-- 	},
+			-- },
 			servers = {
 				lua_ls = {},
 				omnisharp = {},

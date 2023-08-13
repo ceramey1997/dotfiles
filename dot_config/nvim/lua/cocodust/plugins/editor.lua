@@ -1,3 +1,4 @@
+local icons = require("cocodust.icons")
 return {
 	-- File Explorer
 	{
@@ -21,13 +22,22 @@ return {
 		init = function()
 			vim.g.neo_tree_remove_legacy_commands = 1
 
-			vim.fn.sign_define("LspDiagnosticsSignError", { text = "", texthl = "LspDiagnosticsSignError" })
-			vim.fn.sign_define("LspDiagnosticsSignWarning", { text = "", texthl = "LspDiagnosticsSignWarning" })
+			vim.fn.sign_define(
+				"LspDiagnosticsSignError",
+				{ text = icons.Diagnostics.Error.Icon.Line_Error, texthl = "LspDiagnosticsSignError" }
+			)
+			vim.fn.sign_define(
+				"LspDiagnosticsSignWarning",
+				{ text = icons.Diagnostics.Warning.Icon.Solid, texthl = "LspDiagnosticsSignWarning" }
+			)
 			vim.fn.sign_define(
 				"LspDiagnosticsSignInformation",
-				{ text = "", texthl = "LspDiagnosticsSignInformation" }
+				{ text = icons.Diagnostics.Info.Icon.Solid, texthl = "LspDiagnosticsSignInformation" }
 			)
-			vim.fn.sign_define("LspDiagnosticsSignHint", { text = "", texthl = "LspDiagnosticsSignHint" })
+			vim.fn.sign_define(
+				"LspDiagnosticsSignHint",
+				{ text = icons.Diagnostics.Hint.Icon, texthl = "LspDiagnosticsSignHint" }
+			)
 
 			if vim.fn.argc() == 1 then
 				local stat = vim.loop.fs_stat(vim.fn.argv(0))
@@ -45,10 +55,10 @@ return {
 			default_component_configs = {
 				diagnostics = {
 					symbols = {
-						hint = "",
-						info = "",
-						warn = "",
-						error = "",
+						hint = icons.Diagnostics.Hint.Icon,
+						info = icons.Diagnostics.Info.Icon.Outline,
+						warn = icons.Diagnostics.Warning.Icon.Outline,
+						error = icons.Diagnostics.Error.Icon.File_Error,
 					},
 					highlights = {
 						hint = "DiagnosticSignHint",
@@ -59,16 +69,16 @@ return {
 				},
 				git_status = {
 					symbols = {
-						added = "",
-						modified = "",
-						deleted = "✖",
-						renamed = "",
+						added = icons.Git.Added.Icon.File_Plus,
+						modified = icons.Git.Modified.Icon.Git_PR,
+						deleted = icons.Git.Deleted.Icon.X,
+						renamed = icons.Git.Renamed.Icon,
 						-- Status type
-						untracked = "",
-						ignored = "",
+						untracked = icons.Git.Untracked.Icon,
+						ignored = icons.Git.Ignored.Icon,
 						unstaged = "",
-						staged = "",
-						conflict = "",
+						staged = icons.Git.Staged.Icon,
+						conflict = icons.Git.Conflict.Icon,
 					},
 				},
 			},
@@ -98,7 +108,7 @@ return {
 				function()
 					require("telescope.builtin").buffers()
 				end,
-				desc = "[F]ind [B}uffers",
+				desc = "[F]ind [B]uffers",
 			},
 			{
 				"<leader>sa",

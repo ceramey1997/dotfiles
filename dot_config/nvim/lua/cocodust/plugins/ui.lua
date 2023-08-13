@@ -1,3 +1,4 @@
+local icons = require("cocodust.icons")
 return {
 	-- better `vim.notify()`
 	{
@@ -37,8 +38,8 @@ return {
 				diagnostics = "nvim_lsp",
 				always_show_bufferline = false,
 				diagnostics_indicator = function(_, _, diag)
-					local ret = (diag.error and " " .. diag.error .. " " or "")
-						.. (diag.warning and " " .. diag.warning or "")
+					local ret = (diag.error and icons.Diagnostics.Error.Icon.Line_Error .. diag.error .. " " or "")
+						.. (diag.warning and icons.Diagnostics.Warning.Icon.Solid .. diag.warning or "")
 					return vim.trim(ret)
 				end,
 				offsets = {
@@ -78,14 +79,18 @@ return {
 						{
 							"diagnostics",
 							symbols = {
-								error = "",
-								warn = "",
-								info = "",
-								hint = "",
+								error = icons.Diagnostics.Error.Icon.Line_Error,
+								warn = icons.Diagnostics.Warning.Icon.Outline,
+								info = icons.Diagnostics.Info.Icon.Outline,
+								hint = icons.Diagnostics.Hint.Icon,
 							},
 						},
 						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
+						{
+							"filename",
+							path = 1,
+							symbols = { modified = icons.Git.Modified.Icon.Document, readonly = "", unnamed = "" },
+						},
 						{
 							function()
 								return require("nvim-navic").get_location()
@@ -104,9 +109,9 @@ return {
 						{
 							"diff",
 							symbols = {
-								added = " ",
-								modified = " ",
-								removed = " ",
+								added = icons.Git.Added.Icon.Box_Plus,
+								modified = icons.Git.Modified.Icon.Box_Diagonal_Solid,
+								removed = icons.Git.Deleted.Icon.Box_Minus_Solid,
 							},
 						},
 					},
@@ -116,7 +121,7 @@ return {
 					},
 					lualine_z = {
 						function()
-							return " " .. os.date("%R")
+							return icons.Diagnostics.Waiting.Icon .. os.date("%R")
 						end,
 					},
 				},
@@ -165,41 +170,54 @@ return {
 				-- override = {},
 				override_by_filename = {
 					[".prettierrc.json"] = {
-						icon = "",
-						color = "#c595c8",
-						cterm_color = "134",
+						icon = icons.Files.Prettier.Icon,
+						color = icons.Files.Prettier.HexColor,
+						cterm_color = icons.Files.Prettier.CtermColor,
 						name = "prettierrc",
 					},
-					["Tiltfile"] = {
-						icon = "",
-						color = "#00af5f",
-						cterm_color = "35",
+					["tiltfile"] = {
+						icon = icons.Files.TiltFile.Icon,
+						color = icons.Files.TiltFile.HexColor,
+						cterm_color = icons.Files.TiltFile.CtermColor,
 						name = "Tiltfile",
 					},
-					["Dockerfile"] = { -- doesn't work
-						icon = "",
-						color = "#afffff",
-						cterm_color = "159",
+					["dockerfile"] = { -- doesn't work
+						icon = icons.Files.DockerFile.Icon,
+						color = icons.Files.DockerFile.HexColor,
+						cterm_color = icons.Files.DockerFile.CtermColor,
+						name = "dockerfile",
 					},
 				},
 				override_by_extension = {
 					["local"] = {
-						icon = "",
-						color = "#de8d14",
-						cterm_color = "172",
+						icon = icons.Files.Local.Icon,
+						color = icons.Files.Local.HexColor,
+						cterm_color = icons.Files.Local.CtermColor,
 						name = "local_files",
 					},
 					["cs"] = {
-						icon = "",
-						color = "#007aff",
-						cterm_color = "20",
+						icon = icons.Files.Csharp.Icon,
+						color = icons.Files.Csharp.HexColor,
+						cterm_color = icons.Files.Csharp.CtermColor,
 						name = "csharp",
 					},
 					["csproj"] = {
-						icon = "",
-						color = "#890fb0",
-						cterm_color = "5",
+						icon = icons.Files.Csproj.Icon,
+						color = icons.Files.Csproj.HexColor,
+						cterm_color = icons.Files.Csproj.CtermColor,
 						name = "csproj",
+					},
+					["ps1"] = {
+						icon = icons.Files.Powershell.Icon,
+						color = icons.Files.Powershell.HexColor,
+						cterm_color = icons.Files.Powershell.CtermColor,
+						name = "psScriptFile",
+					},
+					["bicep"] = {
+						icon = icons.Files.Bicep.Icon,
+						color = icons.Files.Bicep.HexColor,
+						cterm_color = icons.Files.Bicep.CtermColor,
+						name = "bicep",
 					},
 				},
 			})
