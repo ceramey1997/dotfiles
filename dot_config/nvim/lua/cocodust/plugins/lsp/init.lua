@@ -245,6 +245,7 @@ return {
 				"typescript-language-server",
 				"vue-language-server",
 				"eslint-lsp",
+				"pyright",
 			},
 		},
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "[C]heck [M]ason" } },
