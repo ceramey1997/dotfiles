@@ -1,0 +1,11 @@
+- defaults:
+  link:
+    relink: true
+
+- clean: ['~']
+
+- link:
+  ~/.config/tmux: dot_config/tmux
+  ~/.config/nvim: dot_config/nvim
+  ~/.config/bash: dot_config/bash
+  ~/.config/oh-my-posh/: dot_config/oh-my-posh
