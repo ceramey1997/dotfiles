@@ -9,3 +9,10 @@
   ~/.config/nvim: dot_config/nvim
   ~/.config/bash: dot_config/bash
   ~/.config/oh-my-posh/: dot_config/oh-my-posh
+  ~/.config/lazygit/: dot_config/lazygit
+
+- create:
+  - ~/downloads
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
