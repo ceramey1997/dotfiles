@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -x "$(command -v nvim)" ]; then
+if [ -x "$(command -v oh-my-posh)" ]; then
     echo "oh-my-posh already installed. Exiting"
     exit 0
 fi
