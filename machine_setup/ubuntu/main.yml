@@ -21,9 +21,10 @@
           export ME={{ user }}
           echo $ME
         register: result
+
     - name: show result
       debug:
-        msg: "{{ result.stdout }}"
+        var: result.stdout
 
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
