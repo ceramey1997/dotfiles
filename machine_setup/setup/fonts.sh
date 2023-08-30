@@ -6,5 +6,7 @@ wget https://github.com/ryanoasis/nerd-fonts/releases/download/$LATESTTAG/Cascad
 unzip $HOME/CascadiaCode.zip $HOME/.local/share/fonts
 fc-cache -fv
 
+rm -rf $HOME/CascadiaCode.zip
+
 
 #https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/CascadiaCode.zip
