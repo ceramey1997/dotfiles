@@ -1,3 +1,8 @@
+# Setup ansible
+if [ -f "$XDG_CONFIG_HOME/bash/programs/ansible/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/ansible/init.bash"
+fi
+
 # Setup asdf
 if [ -f "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash"
