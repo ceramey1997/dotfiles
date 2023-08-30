@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    - user: 'cole'
+    - dotfiles_repo: 'git@github.com:ceramey1997/dotfiles.git'
+    - ssh_key: '.ssh/id_rsa'
+
+  tasks:
+    - name: "Install system packages"
+      apt:
+        name:
+          - bat
+          - exa
+          - jq
+          - git
+        state: latest
+
+    - name: "Check out dotfiles"
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: ./tmp-dotfiles
+        accept_hostkey: yes
+        force: yes
+        recursive: no
+        key_file: "/home/{{ user }}/{{ ssh_key }}"
+      delegate_to: localhost
+      become: no
+      run_once: true
+
+
