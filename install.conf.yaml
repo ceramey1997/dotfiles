@@ -21,4 +21,3 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-    - [sudo apt-get install -y ansible]
