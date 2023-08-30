@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source $HOME/.bashrc
 if [ -x "$(command -v nvim)" ]; then
     echo "NeoVim already installed. Exiting"
     exit 0
@@ -11,6 +12,5 @@ if ! [ -x "$(command -v brew)" ]; then
 else
     echo "Installing nvim"
     brew install neovim
-    source $HOME/.bashrc
     exit 33
 fi

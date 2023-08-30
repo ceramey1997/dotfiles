@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "$HOME/.local/bin must exist"
 if [ -x "$(command -v oh-my-posh)" ]; then
     echo "oh-my-posh already installed. Exiting"
     exit 0
@@ -22,7 +23,6 @@ if [ -d "$HOME/.local/bin" ]; then
     echo "******************************************************************************"
     exit 33
 else
-    echo "$HOME/.local/bin must exist"
     exit 1
 fi
 exit 0
