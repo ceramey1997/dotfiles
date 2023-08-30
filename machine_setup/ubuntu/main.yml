@@ -20,6 +20,8 @@
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
       register: asdf
       changed_when: "asdf.rc != 33"
+    - debug:
+        var: asdf
 
     - name: "Install brew"
       script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
