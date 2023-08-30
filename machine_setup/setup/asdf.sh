@@ -20,4 +20,6 @@ echo "- Install a plugin by executing: asdf plugin add <name>"
 echo "- find versions by executing: asdf list all <installed-plguin-name>"
 echo "- Install specific version via asdf install <name> <version>"
 
+source $HOME/.bashrc
+
 exit $CODE

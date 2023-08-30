@@ -4,6 +4,7 @@ set -e
 export CODE=0
 if [ -x "$(command -v brew)" ]; then
     echo "Brew already installed. Exiting"
+    source $HOME/.bashrc
     CODE=0
     exit $CODE
 fi
@@ -17,4 +18,6 @@ command sudo apt-get install -y build-essential procps curl file git > /dev/null
 command curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 
 echo "Complete... brew installed."
+source $HOME/.bashrc
+
 exit $CODE
