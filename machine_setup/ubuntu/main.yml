@@ -19,5 +19,19 @@
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
 
+    - name: "Install brew"
+      script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
+
+    - name: "Install brew"
+      script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
+
+    - name: "Install nvim"
+      script: /$HOME/.dotfiles/machine_setup/setup/nvim.sh
+
+    - name: "Install oh-my-posh"
+      script: /$HOME/.dotfiles/machine_setup/setup/oh_my_posh.sh
+
+    - name: "Install lazygit"
+      script: /$HOME/.dotfiles/machine_setup/setup/lazygit.sh
 
 
