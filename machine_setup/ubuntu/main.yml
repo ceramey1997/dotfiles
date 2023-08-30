@@ -15,16 +15,6 @@
           - jq
           - git
         state: latest
-    - name: "whoami"
-      shell:
-        cmd: |
-          export ME={{ user }}
-          echo $ME
-        register: result
-
-    - name: show result
-      debug:
-        var: result.stdout_lines
 
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
