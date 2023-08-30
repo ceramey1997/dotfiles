@@ -3,7 +3,7 @@ set -e
 
 LATESTTAG=$(curl --silent "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | jq -r .tag_name)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/$LATESTTAG/CascadiaCode.zip -P $HOME
-unzip $HOME/CascadiaCode.zip $HOME/.local/share/fonts
+unzip $HOME/CascadiaCode.zip -d $HOME/.local/share/fonts
 fc-cache -fv
 
 rm -rf $HOME/CascadiaCode.zip
