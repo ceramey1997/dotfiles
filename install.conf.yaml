@@ -1,6 +1,6 @@
 - defaults:
-  link:
-    relink: true
+    link:
+      relink: true
 
 - clean: ['~']
 
@@ -13,7 +13,7 @@
     ~/.bash_profile: .bash_profile
 
 - create:
-  - ~/downloads
+    - ~/downloads
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - [git submodule update --init --recursive, Installing submodules]
