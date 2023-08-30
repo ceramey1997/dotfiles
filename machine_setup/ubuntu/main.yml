@@ -24,7 +24,7 @@
 
     - name: show result
       debug:
-        var: result.stdout
+        var: result.stdout_lines
 
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
