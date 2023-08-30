@@ -28,6 +28,8 @@
 
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
+      register: asdf
+      changed_when: asdf.rc != 33
 
     - name: "Install brew"
       script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
