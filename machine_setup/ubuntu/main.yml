@@ -27,7 +27,7 @@
         state: latest
 
     - name: "Install asdf"
-      shell: $HOME/.dotfiles/machine_setup/setup/asdf.sh
+      shell: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
       register: asdf
       changed_when: "asdf.rc == 33"
       failed_when: "asdf.rc != 0 and asdf.rc != 33"
@@ -37,7 +37,7 @@
       when: "asdf.rc != 0 and asdf.rc != 33"
 
     - name: "Install brew"
-      shell: $HOME/.dotfiles/machine_setup/setup/brew.sh
+      shell: /$HOME/.dotfiles/machine_setup/setup/brew.sh
       register: brew
       changed_when: "brew.rc == 33"
       failed_when: "brew.rc != 0 and brew.rc != 33"
@@ -47,7 +47,7 @@
       when: "brew.rc != 0 and brew.rc != 33"
 
     - name: "Install nvim"
-      shell: $HOME/.dotfiles/machine_setup/setup/nvim.sh
+      shell: /$HOME/.dotfiles/machine_setup/setup/nvim.sh
       register: nvim
       changed_when: "nvim.rc == 33"
       failed_when: "nvim.rc != 0 and nvim.rc != 33"
@@ -67,7 +67,7 @@
     #   when: "fonts.rc != 0 and fonts.rc != 33"
 
     - name: "Install oh-my-posh"
-      shell: $HOME/.dotfiles/machine_setup/setup/oh_my_posh.sh
+      shell: /$HOME/.dotfiles/machine_setup/setup/oh_my_posh.sh
       register: posh
       changed_when: "posh.rc == 33"
       failed_when: "posh.rc != 0 and posh.rc != 33"
@@ -77,7 +77,7 @@
       when: "posh.rc != 0 and posh.rc != 33"
 
     - name: "Install lazygit"
-      shell: $HOME/.dotfiles/machine_setup/setup/lazygit.sh
+      shell: /$HOME/.dotfiles/machine_setup/setup/lazygit.sh
       register: lazygit
       changed_when: "lazygit.rc == 33"
       failed_when: "lazygit.rc != 0 and lazygit.rc != 33"
