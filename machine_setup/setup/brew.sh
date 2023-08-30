@@ -1,11 +1,9 @@
 #!/bin/bash
 set -e
 
-source $HOME/.bashrc
 export CODE=0
-if [ -x "$(command -v brew)" ]; then
+if [ -d /home/linuxbrew ]; then
     echo "Brew already installed. Exiting"
-    source $HOME/.bashrc
     CODE=0
     exit $CODE
 fi
@@ -15,7 +13,6 @@ echo ""
 echo "   ** || Installing dependencies... 'build-esential, procps, curl, file, git' || ** "
 
 command curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
-
 echo "Complete... brew installed."
 
 exit $CODE

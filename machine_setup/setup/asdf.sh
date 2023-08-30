@@ -2,9 +2,10 @@
 set -e
 
 export CODE=0
-if [ ! -d "$XDG_DATA_HOME/asdf" ]; then
+export TMP_XDG_DATA_HOME="$HOME/.local/share"
+if [ ! -d "$TMP_XDG_DATA_HOME/asdf" ]; then
     LATESTTAG=$(curl --silent "https://api.github.com/repos/asdf-vm/asdf/releases/latest" | jq -r .tag_name)
-    git clone https://github.com/asdf-vm/asdf.git $XDG_DATA_HOME/asdf --branch $LATESTTAG
+    git clone https://github.com/asdf-vm/asdf.git $TMP_XDG_DATA_HOME/asdf --branch $LATESTTAG
     CODE=33
 fi
 
@@ -19,7 +20,5 @@ echo "- list all plugins by executing: asdf plugin list all"
 echo "- Install a plugin by executing: asdf plugin add <name>"
 echo "- find versions by executing: asdf list all <installed-plguin-name>"
 echo "- Install specific version via asdf install <name> <version>"
-
-source $HOME/.bashrc
 
 exit $CODE
