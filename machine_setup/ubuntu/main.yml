@@ -18,7 +18,7 @@
           - git
           - unzip
           - wget
-          - fontconfig
+          # - fontconfig
         state: latest
 
     - name: "Install asdf"
@@ -51,15 +51,15 @@
         var: nvim
       when: "nvim.rc != 0 and nvim.rc != 33"
 
-    - name: "Install CascadiaCode nerd-font"
-      script: /$HOME/.dotfiles/machine_setup/setup/fonts.sh
-      register: fonts
-      changed_when: "fonts.rc == 33"
-      failed_when: "fonts.rc != 0 and fonts.rc != 33"
+    # - name: "Install CascadiaCode nerd-font"
+    #   script: /$HOME/.dotfiles/machine_setup/setup/fonts.sh
+    #   register: fonts
+    #   changed_when: "fonts.rc == 33"
+    #   failed_when: "fonts.rc != 0 and fonts.rc != 33"
 
-    - debug:
-        var: fonts 
-      when: "fonts.rc != 0 and fonts.rc != 33"
+    # - debug:
+    #     var: fonts 
+    #   when: "fonts.rc != 0 and fonts.rc != 33"
 
     - name: "Install oh-my-posh"
       script: /$HOME/.dotfiles/machine_setup/setup/oh_my_posh.sh
@@ -80,5 +80,3 @@
     - debug:
         var: lazygit
       when: "lazygit.rc != 0 and lazygit.rc != 33"
-
-
