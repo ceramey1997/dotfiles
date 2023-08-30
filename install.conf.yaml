@@ -15,8 +15,8 @@
     ~/.bash_profile: .bash_profile
 
 - create:
-    - ~/downloads
     - ~/.config
+    - ~/.local/bin
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
