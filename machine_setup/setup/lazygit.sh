@@ -8,6 +8,8 @@ fi
 
 if [ -x "$(command -v brew)" ]; then
     brew install jesseduffield/lazygit/lazygit
+    exit 33
 else
     echo "Brew must be installed before installing LazyGit"
+    exit 1
 fi

@@ -24,4 +24,9 @@ if [ -d "$HOME/.local/bin" ]; then
     echo "    	 ----------****|| see below for insperation ||****-------------"
     echo "              https://ohmyposh.dev/docs/installation/fonts"
     echo "******************************************************************************"
+    exit 33
+else
+    echo "$HOME/.local/bin must exist"
+    exit 1
 fi
+exit 0
