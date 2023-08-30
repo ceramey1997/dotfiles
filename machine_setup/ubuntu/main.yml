@@ -1,6 +1,5 @@
 ---
 - hosts: localhost
-  become: yes
   become_user: '{{ lookup("env", "USER") }}'
   vars:
     - user: "{{ lookup('env', 'USER') }}"
@@ -9,6 +8,8 @@
 
   tasks:
     - name: "Install system packages"
+      become: yes
+      become_user: root
       apt:
         name:
           - bat
