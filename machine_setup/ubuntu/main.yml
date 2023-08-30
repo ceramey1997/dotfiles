@@ -18,6 +18,11 @@
           - git
           - unzip
           - wget
+          - build-essential
+          - procps
+          - curl
+          - file
+          - git
           # - fontconfig
         state: latest
 
