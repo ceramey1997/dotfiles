@@ -19,23 +19,34 @@
     - name: "Install asdf"
       script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
       register: asdf
-      changed_when: "asdf.rc != 33"
+      changed_when: "asdf.rc == 33"
+      failed_when: "asdf.rc != 0 and asdf.rc != 33"
+
     - debug:
         var: asdf
 
     - name: "Install brew"
       script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
-
-    - name: "Install brew"
-      script: /$HOME/.dotfiles/machine_setup/setup/brew.sh
+      register: brew
+      changed_when: "brew.rc == 33"
+      failed_when: "brew.rc != 0 and brew.rc != 33"
 
     - name: "Install nvim"
       script: /$HOME/.dotfiles/machine_setup/setup/nvim.sh
+      register: nvim
+      changed_when: "nvim.rc == 33"
+      failed_when: "nvim.rc != 0 and nvim.rc != 33"
 
     - name: "Install oh-my-posh"
       script: /$HOME/.dotfiles/machine_setup/setup/oh_my_posh.sh
+      register: posh
+      changed_when: "posh.rc == 33"
+      failed_when: "posh.rc != 0 and posh.rc != 33"
 
     - name: "Install lazygit"
       script: /$HOME/.dotfiles/machine_setup/setup/lazygit.sh
+      register: lazygit
+      changed_when: "lazygit.rc == 33"
+      failed_when: "lazygit.rc != 0 and lazygit.rc != 33"
 
 
