@@ -9,7 +9,9 @@
     ~/.config/nvim: .config/nvim
     ~/.config/bash: .config/bash
     ~/.config/oh-my-posh/: .config/oh-my-posh
-    ~/.bashrc: .bashrc
+    ~/.bashrc:
+      force: true
+      path: .bashrc
     ~/.bash_profile: .bash_profile
 
 - create:
