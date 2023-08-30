@@ -14,6 +14,7 @@
           - exa
           - jq
           - git
+          - unzip
         state: latest
 
     - name: "Install asdf"

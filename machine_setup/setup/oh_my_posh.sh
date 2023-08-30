@@ -5,10 +5,6 @@ if [ -x "$(command -v oh-my-posh)" ]; then
     exit 0
 fi
 if [ -d "$HOME/.local/bin" ]; then
-    echo "Installing unzip..."
-    command sudo apt-get update > /dev/null
-    command sudo apt-get install -y > /dev/null
-    command sudo apt-get install unzip > /dev/null
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
     echo "******************************************************************************"
     echo "    1)"
