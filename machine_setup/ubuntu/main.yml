@@ -17,7 +17,7 @@
         state: latest
 
     - name: "Install asdf"
-      script: $HOME/.dotfiles/machine_setup/setup/asdf.sh
+      script: /$HOME/.dotfiles/machine_setup/setup/asdf.sh
 
 
 
