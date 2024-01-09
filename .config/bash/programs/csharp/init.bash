@@ -5,3 +5,7 @@
 if [ -f "$XDG_CONFIG_HOME/bash/programs/csharp/aliases.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/csharp/aliases.bash"
 fi
+
+if [ -f "$XDG_CONFIG_HOME/bash/programs/csharp/startup.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/csharp/startup.bash"
+fi

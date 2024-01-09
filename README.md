@@ -1,6 +1,7 @@
 - run `sudo apt-get upgrade -y && sudo apt-get update -y && sudo apt-get install ansible -y`
 - clone repo `git clone ceramey1997/dotfiles ~/.dotfiles`
 - setup variables for git configuration
+    - NOTE: for mult-use: create a `local_setup` folder in `.dotfiles` with scripts to help setup with vars (its ignored)
     - `export GIT_USER_EMAIL=<email>`
     - `export GIT_USER_NAME=<your name>`
     - `export GIT_SIGNING_KEY=<your public ssh key>`

@@ -25,6 +25,7 @@
           - git
           - python3-pip
           - socat
+          - ripgrep
         state: latest
 
     - name: "Install asdf"
@@ -86,3 +87,84 @@
     - debug:
         var: lazygit
       when: "lazygit.rc != 0 and lazygit.rc != 33"
+
+# --------------- DOTNET ---------------------------
+
+# - Create dotnet Directories
+    - name: "Create dotnet directory"
+      file:
+        path: /$HOME/.local/share/dotnet
+        recurse: yes
+        state: directory
+
+    - name: "Create dotnet install dirs"
+      file:
+        path: $HOME/tmp/{{item}}
+        recurse: yes
+        state: directory
+      with_items: ["net6", "net7", "net8"]
+
+# - NET6 -
+    - name: Check if net6.0.417 is installed
+      stat: path=$HOME/.local/share/dotnet/sdk/6.0.417
+      register: net6installed
+
+    - name: "Extract dotnet 6.0.417"
+      unarchive:
+        src: /$HOME/.dotfiles/machine_setup/tars/dotnet-sdk-6.0.417-linux-x64.tar.gz
+        dest: /$HOME/tmp/net6
+        creates: /$HOME/tmp/net6
+      when: not net6installed.stat.exists
+
+    - name: "Install dotnet 6.0.417 (Also installs dotnet main things - CLI etc.,)"
+      shell: /$HOME/.dotfiles/machine_setup/ubuntu/helpers/dotnet/first_net_install.sh $HOME/tmp/net6
+      register: net6
+      changed_when: "net6.rc == 33"
+      failed_when: "net6.rc != 0 and net6.rc != 33"
+      when: not net6installed.stat.exists
+# - NET6 -
+
+# - NET7 -
+    - name: Check if net7.0.404 exists
+      stat: path=$HOME/.local/share/dotnet/sdk/7.0.404
+      register: net7installed
+
+    - name: "Extract dotnet 7.0.404"
+      unarchive:
+        src: /$HOME/.dotfiles/machine_setup/tars/dotnet-sdk-7.0.404-linux-x64.tar.gz
+        dest: /$HOME/tmp/net7
+      when: not net7installed.stat.exists
+
+    - name: "Install dotnet 7.0.404"
+      shell: /$HOME/.dotfiles/machine_setup/ubuntu/helpers/dotnet/add_dotnet_sdk.sh 7.0.404 7.0.14 $HOME/tmp/net7
+      register: net7
+      changed_when: "net7.rc == 33"
+      failed_when: "net7.rc != 0 and net7.rc != 33"
+      when: not net7installed.stat.exists
+# - NET7 -
+
+# - NET8 -
+    - name: Check if net8.0.100 exists
+      stat: path=$HOME/.local/share/dotnet/sdk/8.0.100
+      register: net8installed
+
+    - name: "Extract dotnet 8.0.100"
+      unarchive:
+        src: /$HOME/.dotfiles/machine_setup/tars/dotnet-sdk-8.0.100-linux-x64.tar.gz
+        dest: /$HOME/tmp/net8
+      when: not net8installed.stat.exists
+
+    - name: "Install dotnet 8.0.100"
+      shell: /$HOME/.dotfiles/machine_setup/ubuntu/helpers/dotnet/add_dotnet_sdk.sh 8.0.100 8.0.0 $HOME/tmp/net8
+      register: net8
+      changed_when: "net8.rc == 33"
+      failed_when: "net8.rc != 0 and net8.rc != 33"
+      when: not net8installed.stat.exists
+# - NET8 -
+
+    - name: "Remove tmp directory"
+      ansible.builtin.file:
+        state: absent
+        path: /$HOME/tmp
+
+# --------------- DOTNET ---------------------------
