@@ -119,8 +119,3 @@ fi
 if [ -f ~/.config/bash/init.bash ]; then
     . ~/.config/bash/init.bash
 fi
-
-#  export GOPATH=$(go env GOPATH)
-#  export GOROOT=$(go env GOROOT)
-#  export GOBIN=$GOPATH/bin
-#  export PATH=$PATH:$GOBIN

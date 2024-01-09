@@ -1,3 +1,8 @@
+# Setup 1password cli
+if [ -f "$XDG_CONFIG_HOME/bash/programs/1password/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/1password/init.bash"
+fi
+
 # Setup ansible
 if [ -f "$XDG_CONFIG_HOME/bash/programs/ansible/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/ansible/init.bash"

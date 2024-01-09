@@ -23,7 +23,8 @@
           - curl
           - file
           - git
-          # - fontconfig
+          - python3-pip
+          - socat
         state: latest
 
     - name: "Install asdf"
