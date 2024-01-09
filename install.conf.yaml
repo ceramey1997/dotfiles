@@ -22,10 +22,13 @@
     ~/.config/1password/.agent-bridge.sh:
       create: true
       path: .config/bash/programs/1password/.agent-bridge.sh
-    ~/.gitconfig: .config/bash/programs/git/.gitconfig
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
     - [source $HOME/.bashrc]
-    - [git config --global user.email $GIT_USER_EMAIL]
-    - [git config --global user.name $GIT_USER_NAME]
+    - [git config --global gpg.format ssh]
+    - [git config --global commit.gpgsign true]
+    - [git config --global gpg.ssh.program "$GIT_GPG_SSH_PROGRAM"]
+    - [git config --global user.signingkey "$GIT_SIGNING_KEY"]
+    - [git config --global user.email "$GIT_USER_EMAIL"]
+    - [git config --global user.name "$GIT_USER_NAME"]

@@ -3,6 +3,8 @@
 - setup variables for git configuration
     - `export GIT_USER_EMAIL=<email>`
     - `export GIT_USER_NAME=<your name>`
+    - `export GIT_SIGNING_KEY=<your public ssh key>`
+    - `export GIT_GPG_SSH_PROGRAM=<[/mnt/c/Users/USER/AppData/Local/1Password/app/8/op-ssh-sign-wsl] or path>`
 - cd into `.dotfiles` and execute `./install`
 - cd into `machine_setup/ubuntu`
 - run `ansible-playbook main.yml`
