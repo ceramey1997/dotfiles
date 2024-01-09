@@ -9,3 +9,6 @@ alias shrug='echo "¯\_(ツ)_/¯" | xclip -selection clipboard'
 
 # Generate new GUID
 alias newguid='python3 -c "import uuid; print(str(uuid.uuid4()))" | xclip -selection clipboard'
+
+# bat cat
+alias cat='batcat'

@@ -1,11 +1,34 @@
 - defaults:
-  link:
-    relink: true
+    link:
+      relink: true
 
 - clean: ['~']
 
+- create:
+    - ~/.config
+    - ~/.local/bin
+    - ~/.local/share/fonts
+    - ~/.1password
+
 - link:
-  ~/.config/tmux: dot_config/tmux
-  ~/.config/nvim: dot_config/nvim
-  ~/.config/bash: dot_config/bash
-  ~/.config/oh-my-posh/: dot_config/oh-my-posh
+    ~/.config/tmux: .config/tmux
+    ~/.config/nvim: .config/nvim
+    ~/.config/bash: .config/bash
+    ~/.config/oh-my-posh/: .config/oh-my-posh
+    ~/.bashrc:
+      force: true
+      path: .bashrc
+    ~/.bash_profile: .bash_profile
+    ~/.config/1password/.agent-bridge.sh:
+      create: true
+      path: .config/bash/programs/1password/.agent-bridge.sh
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
+    - [source $HOME/.bashrc]
+    - [git config --global gpg.format ssh]
+    - [git config --global commit.gpgsign true]
+    - [git config --global gpg.ssh.program "$GIT_GPG_SSH_PROGRAM"]
+    - [git config --global user.signingkey "$GIT_SIGNING_KEY"]
+    - [git config --global user.email "$GIT_USER_EMAIL"]
+    - [git config --global user.name "$GIT_USER_NAME"]

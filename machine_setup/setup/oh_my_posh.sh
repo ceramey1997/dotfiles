@@ -1,14 +1,11 @@
 #!/bin/bash
 
-if [ -x "$(command -v nvim)" ]; then
+echo "$HOME/.local/bin must exist"
+if [ -x "$(command -v oh-my-posh)" ]; then
     echo "oh-my-posh already installed. Exiting"
     exit 0
 fi
 if [ -d "$HOME/.local/bin" ]; then
-    echo "Installing unzip..."
-    command sudo apt-get update > /dev/null
-    command sudo apt-get install -y > /dev/null
-    command sudo apt-get install unzip > /dev/null
     curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $HOME/.local/bin
     echo "******************************************************************************"
     echo "    1)"
@@ -24,4 +21,8 @@ if [ -d "$HOME/.local/bin" ]; then
     echo "    	 ----------****|| see below for insperation ||****-------------"
     echo "              https://ohmyposh.dev/docs/installation/fonts"
     echo "******************************************************************************"
+    exit 33
+else
+    exit 1
 fi
+exit 0
