@@ -33,6 +33,7 @@ return {
 				"vim",
 				"yaml",
 				"c_sharp",
+				"python",
 			},
 			incremental_selection = {
 				enable = true,

@@ -53,6 +53,10 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/npm/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/npm/init.bash"
 fi
 
+if [ -f "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash"
+fi
+
 # Setup oh_my_posh
 if [ -f "$XDG_CONFIG_HOME/bash/programs/oh_my_posh/startup.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/oh_my_posh/startup.bash"
@@ -81,5 +85,10 @@ fi
 # Setup wget
 if [ -f "$XDG_CONFIG_HOME/bash/programs/wget/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/wget/init.bash"
+fi
+
+
+if [ -f "$XDG_CONFIG_HOME/bash/programs/zoxide/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/zoxide/init.bash"
 fi
 

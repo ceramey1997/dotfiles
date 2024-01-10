@@ -17,4 +17,3 @@ fi
 if [ -f "$XDG_CONFIG_HOME/bash/programs/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/init.bash"
 fi
-
