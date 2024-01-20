@@ -1,6 +1,3 @@
-local themes = require("cocodust.themes")
+local themes = require("cocodust.config.themes")
 
---return themes.setupMelange()
---return themes.setupKangawa()
-return themes.setupMaterial()
---return themes.setupGruvBox()
+return themes.setupMelange()

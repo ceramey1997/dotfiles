@@ -1,7 +1,3 @@
-require("cocodust.settings")
-require("cocodust.remap")
-require("cocodust.filetypes")
-
 -- Install lazy.nvim if it doesn't exist
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -17,13 +13,18 @@ end
 -- Load lazy.nvim into runtime path
 vim.opt.runtimepath:prepend(lazypath)
 
--- Configure lazy.nvim
-require("lazy").setup("cocodust.plugins", {
+local themes = require("cocodust.config.themes")
+local modules = require("cocodust.config.lazy-modules")
+---- Configure lazy.nvim
+require("lazy").setup({
+	spec = modules,
+  lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
 	defaults = {
 		lazy = true,
+		version = nil,
 	},
 	install = {
-		colorscheme = { "material" },
+		missing = true,
 	},
 	checker = {
 		enabled = true,
@@ -33,6 +34,9 @@ require("lazy").setup("cocodust.plugins", {
 		notify = false,
 	},
 	performance = {
+		cache = {
+			enabled = true,
+		},
 		rtp = {
 			disabled_plugins = {
 				"gzip",
@@ -45,8 +49,5 @@ require("lazy").setup("cocodust.plugins", {
 				"zipPlugin",
 			},
 		},
-	},
-	spec = {
-		{ import = "lazyvim.plugins.extras.lang.tailwind" },
 	},
 })
