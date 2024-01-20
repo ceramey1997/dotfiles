@@ -1,4 +1,4 @@
 return {
-  "anymass/vim-matchup",
-  lazy= false,
+  "andymass/vim-matchup",
+  lazy = false,
 }

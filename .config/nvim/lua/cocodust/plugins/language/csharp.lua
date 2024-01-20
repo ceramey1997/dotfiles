@@ -50,5 +50,49 @@ return {
       --  end,
       --}
     }
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    ft = function(_, ft)
+      vim.list_extend(ft, { "cs" })
+    end
+  },
+  {
+    "mfussenegger/nvim-dap",
+    ft = function(_, ft)
+      vim.list_extend(ft, { "cs" })
+    end,
+    opts = {
+      setup = {
+        netcorebdg = function(_, _)
+          local dap = require("dap")
+
+          local function get_debugger()
+            local mason_registry = require("mason-registry")
+            local debugger = mason_registry.get_package("netcoredbg")
+            return debugger:get_install_path() .. "/netcoredbg"
+          end
+
+          dap.configurations.cs = {
+            {
+              type = "coreclr",
+              request = "launch",
+              name = "Launch - netcoredbg",
+
+              program = function()
+                return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
+              end,
+            }
+          }
+
+          dap.adapters.coreclr = {
+            type = "executable",
+            command = get_debugger(),
+            --command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
+            args = { "--interpreter=vscode" },
+          }
+        end
+      }
+    }
   }
 }

@@ -11,7 +11,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = { "theHamsta/nvim-dap-virtual-text" },
-    ft = { "python" },
+    ft = {},
     keys = {
       {
         "<leader>db",
@@ -60,40 +60,26 @@ return {
         desc = "[D]ap [T]erminate"
       },
     },
-    config = function(_, opts)
+    config = function(plugin, opts)
+      local dap = require("dap")
       -- setup dap config by VsCode launch.json file
       -- require("dap.ext.vscode").load_launchjs()
-      local dap = require("dap")
-      dap.adapters.python = {
-        type = "executable",
-        command = os.getenv("HOME") .. "/.local/share/nvim/mason/packages/debugpy/venv/bin/python3",
-        args = { "-m", "debugpy.adapter" },
-      }
-      dap.configurations.python = {
-        {
-          type = "python",
-          request = "launch",
-          name = "Launch file",
 
-          program = "${file}",
-          pythonPath = function()
-            return "/usr/bin/python3"
-          end
-        }
-      }
+      for k, _ in pairs(opts.setup) do
+        opts.setup[k](plugin, opts)
+      end
     end
   },
   {
     "rcarriga/nvim-dap-ui",
     keys = {
       { "<leader>du", function() require("dapui").toggle({}) end, desc = "[D]ap [U]I Toggle" },
-      --{ "<leader>db", function() require("dap") },
     },
     dependencies = {
       { "mfussenegger/nvim-dap" },
       { "theHamsta/nvim-dap-virtual-text" }
     },
-    ft = { "python" },
+    ft = {},
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
