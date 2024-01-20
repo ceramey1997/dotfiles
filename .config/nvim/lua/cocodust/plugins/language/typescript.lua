@@ -25,10 +25,17 @@ return {
     }
   },
   {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      vim.list_extend(opts.sources, nls.builtins.formatting.prettierd)
+    end
+  },
+  {
     "pmizio/typescript-tools.nvim",
     opts = {},
     config = function(_, opts)
-      require("cocodust.base.lsp.utils").on_attach(function(client, bufnr)
+      require("cocodust.base.lsp_helpers.utils").on_attach(function(client, bufnr)
         if client.name == "tsserver" then
           vim.keymap.set(
             "n",

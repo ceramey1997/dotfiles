@@ -14,7 +14,7 @@ return {
         },
         setup = {
           volar = function()
-            local lsp_utils = require("cocodust.base.lsp.utils")
+            local lsp_utils = require("cocodust.base.lsp_helpers.utils")
             lsp_utils.on_attach(function(_, buffer)
               local tsserver = vim.lsp.get_active_clients({ bufnr = buffer, name = "tsserver" })[1]
               local volar = vim.lsp.get_active_clients({ bufnr = buffer, name = "volar" })[1]

@@ -1,6 +1,6 @@
 local M = {}
 
-local lsp_utils = require("cocodust.base.lsp.utils")
+local lsp_utils = require("cocodust.base.lsp_helpers.utils")
 
 local function lsp_init()
   local config = {
@@ -29,8 +29,8 @@ end
 function M.setup(_, opts)
   lsp_init()
   lsp_utils.on_attach(function(client, bufnr)
-    require("cocodust.base.lsp.format").on_attach(client, bufnr)
-    require("cocodust.base.lsp.keymaps").on_attach(client, bufnr)
+    require("cocodust.base.lsp_helpers.format").on_attach(client, bufnr)
+    require("cocodust.base.lsp_helpers.keymaps").on_attach(client, bufnr)
   end)
 
   local servers = opts.servers

@@ -17,7 +17,7 @@ local themes = require("cocodust.config.themes")
 local modules = require("cocodust.config.lazy-modules")
 ---- Configure lazy.nvim
 require("lazy").setup({
-	spec = modules,
+	spec = modules.Specs,
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
 	defaults = {
 		lazy = true,
