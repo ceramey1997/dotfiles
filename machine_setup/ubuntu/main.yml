@@ -12,6 +12,7 @@
       become_user: root
       apt:
         name:
+          - fd-find
           - bat
           - exa
           - jq

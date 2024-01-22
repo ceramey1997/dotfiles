@@ -7,21 +7,21 @@ local function lsp_init()
     diagnostic = {
       virtual_text = false,
       underline = false,
-      serverity_sort = false,
+      serverity_sort = true,
     },
   }
 
   local icons = require("cocodust.config.icons")
-  local diagnostic_signs = {
-    { name = "DiagnosticSignError", text = icons.Diagnostics.Error.Icon.Line_Error },
-    { name = "DiagnosticSignWarn",  text = icons.Diagnostics.Warning.Icon.Solid },
-    { name = "DiagnosticSignInfo",  text = icons.Diagnostics.Info.Icon.Solid },
-    { name = "DiagnosticSignHint",  text = icons.Diagnostics.Hint.Icon },
-  }
+  --local diagnostic_signs = {
+  --  { name = "DiagnosticSignError", text = icons.Diagnostics.Error.Icon.Line_Error },
+  --  { name = "DiagnosticSignWarn",  text = icons.Diagnostics.Warning.Icon.Solid },
+  --  { name = "DiagnosticSignInfo",  text = icons.Diagnostics.Info.Icon.Solid },
+  --  { name = "DiagnosticSignHint",  text = icons.Diagnostics.Hint.Icon },
+  --}
 
-  for _, sign in ipairs(diagnostic_signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-  end
+  --for _, sign in ipairs(diagnostic_signs) do
+  --  vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
+  --end
 
   vim.diagnostic.config(config.diagnostic)
 end

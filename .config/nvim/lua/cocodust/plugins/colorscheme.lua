@@ -1,3 +1,3 @@
 local themes = require("cocodust.config.themes")
 
-return themes.setupMelange()
+return themes.setupMaterial()

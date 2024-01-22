@@ -14,7 +14,7 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.termguicolors = true
-vim.opt.scrolloff = 8 -- https://neovim.io/doc/user/options.html#'scrolloff'
+vim.opt.scrolloff = 8      -- https://neovim.io/doc/user/options.html#'scrolloff'
 vim.opt.signcolumn = "yes" -- https://neovim.io/doc/user/options.html#'signcolumn'
 --
 
@@ -24,8 +24,8 @@ vim.opt.encoding = "UTF-8"
 
 -- backup / swap / undo
 vim.opt.swapfile = false -- https://neovim.io/doc/user/options.html#'swapfile'
-vim.opt.backup = false -- https://neovim.io/doc/user/options.html#'backup'
-vim.opt.undofile = true -- https://neovim.io/doc/user/options.html#'undofile'
+vim.opt.backup = false   -- https://neovim.io/doc/user/options.html#'backup'
+vim.opt.undofile = true  -- https://neovim.io/doc/user/options.html#'undofile'
 --
 
 -- vim outsiders
@@ -50,4 +50,8 @@ vim.opt.viminfofile = string.format("%s/vim/viminfo", xdg_state)
 --vim.opt.list = true -- https://neovim.io/doc/user/options.html#'list'
 vim.opt.completeopt = "menuone,noselect" -- https://neovim.io/doc/user/options.html#'completeopt'
 vim.opt.listchars = "eol:↴,space:⋅,tab:>-,nbsp:+" -- https://neovim.io/doc/user/options.html#'listchars'
+--
+
+-- other
+vim.opt.mousemoveevent = true
 --

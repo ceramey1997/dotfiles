@@ -1,7 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
-    build = ":MastonUpdate",
+    build = ":MasonUpdate",
     cmd = "Mason",
     keys = {
       {

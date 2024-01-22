@@ -9,6 +9,7 @@ return {
   opts = {
     servers = {},
     setup = {},
+    priority = 1
   },
   config = function(plugin, opts)
     require("cocodust.base.lsp_helpers.servers").setup(plugin, opts)
