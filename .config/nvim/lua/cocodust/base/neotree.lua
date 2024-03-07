@@ -86,10 +86,10 @@ return {
           texthl = "DiagnosticSignError"
         }
       )
-      vim.fn.sign_define("DiagnosticSignWarning",
+      vim.fn.sign_define("DiagnosticSignWarn",
         {
           text = icons.Diagnostics.Warning.Icon.Solid,
-          texthl = "DiagnosticSignWarning"
+          texthl = "DiagnosticSignWarn"
         }
       )
       vim.fn.sign_define("DiagnosticSignInformation",
