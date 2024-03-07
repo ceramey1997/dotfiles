@@ -38,6 +38,10 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/git/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/git/init.bash"
 fi
 
+if [ -f "$XDG_CONFIG_HOME/bash/programs/go/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/go/init.bash"
+fi
+
 # Setup kube
 if [ -f "$XDG_CONFIG_HOME/bash/programs/kube/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/kube/init.bash"
