@@ -5,6 +5,7 @@ vim.g.skip_ts_context_commentstring_module = true
 --
 
 -- text related config
+--vim.opt.paste = true
 vim.opt.number = true
 vim.opt.relativenumber = true -- https://neovim.io/doc/user/options.html#'relativenumber'
 vim.opt.tabstop = 2

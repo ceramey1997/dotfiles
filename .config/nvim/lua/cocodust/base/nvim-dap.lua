@@ -71,6 +71,9 @@ return {
     end
   },
   {
+    "nvim-neotest/nvim-nio",
+  },
+  {
     "rcarriga/nvim-dap-ui",
     keys = {
       { "<leader>du", function() require("dapui").toggle({}) end, desc = "[D]ap [U]I Toggle" },
