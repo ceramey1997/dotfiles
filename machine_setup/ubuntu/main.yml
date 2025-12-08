@@ -61,17 +61,11 @@
       changed_when: "lazygit.rc == 33"
       failed_when: "lazygit.rc != 0 and lazygit.rc != 33"
 
-    - name: "Install Python Poetry"
-      shell: $HOME/.dotfiles/machine_setup/ubuntu/helpers/poetry-install.sh
-      register: poetry
-      changed_when: "poetry.rc == 33"
-      failed_when: "poetry.rc != 0 and poetry.rc != 33"
-
-    - name: "Install nvm node version manager"
-      shell: $HOME/.dotfiles/machine_setup/ubuntu/helpers/nvm-install.sh
-      register: nvm
-      changed_when: "nvm.rc == 33"
-      failed_when: "nvm.rc != 0 and nvm.rc != 33"
+    - name: "Install mise (development environment manager)"
+      shell: $HOME/.dotfiles/machine_setup/ubuntu/helpers/mise-install.sh
+      register: mise
+      changed_when: "mise.rc == 33"
+      failed_when: "mise.rc != 0 and mise.rc != 33"
 
     - name: "Install Zoxide (smarter cd)"
       shell: $HOME/.dotfiles/machine_setup/ubuntu/helpers/zoxide-install.sh

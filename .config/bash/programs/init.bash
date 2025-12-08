@@ -52,13 +52,14 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/lazyGit/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/lazyGit/init.bash"
 fi
 
+# Setup mise
+if [ -f "$XDG_CONFIG_HOME/bash/programs/mise/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/mise/init.bash"
+fi
+
 # Setup npm
 if [ -f "$XDG_CONFIG_HOME/bash/programs/npm/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/npm/init.bash"
-fi
-
-if [ -f "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash" ]; then
-    . "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash"
 fi
 
 # Setup oh_my_posh
