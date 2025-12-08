@@ -75,7 +75,7 @@ M.Diagnostics = {
   },
   Waiting = {
     Icon = Icons.Clock_o,
-    HexColoe = "",
+    HexColor = "",
     CtermColor = "",
   },
 }

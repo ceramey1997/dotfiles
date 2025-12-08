@@ -7,7 +7,7 @@ local function lsp_init()
     diagnostic = {
       virtual_text = false,
       underline = false,
-      serverity_sort = true,
+      severity_sort = true,
     },
   }
 
@@ -34,11 +34,11 @@ function M.setup(_, opts)
   end)
 
   local servers = opts.servers
-  local capabilites = lsp_utils.capabilites()
+  local capabilities = lsp_utils.capabilities()
 
   local function setup(server)
     local server_opts = vim.tbl_deep_extend("force", {
-      capabilites = capabilites,
+      capabilities = capabilities,
     }, servers[server] or {})
 
     if opts.setup[server] then
