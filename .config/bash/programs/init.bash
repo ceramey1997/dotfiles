@@ -13,6 +13,11 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash"
 fi
 
+# Setup Azure CLI and tools
+if [ -f "$XDG_CONFIG_HOME/bash/programs/azure/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/azure/init.bash"
+fi
+
 # Setup bicep 
 if [ -f "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash"
@@ -38,6 +43,10 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/git/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/git/init.bash"
 fi
 
+if [ -f "$XDG_CONFIG_HOME/bash/programs/go/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/go/init.bash"
+fi
+
 # Setup kube
 if [ -f "$XDG_CONFIG_HOME/bash/programs/kube/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/kube/init.bash"
@@ -48,13 +57,14 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/lazyGit/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/lazyGit/init.bash"
 fi
 
+# Setup mise
+if [ -f "$XDG_CONFIG_HOME/bash/programs/mise/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/mise/init.bash"
+fi
+
 # Setup npm
 if [ -f "$XDG_CONFIG_HOME/bash/programs/npm/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/npm/init.bash"
-fi
-
-if [ -f "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash" ]; then
-    . "$XDG_CONFIG_HOME/bash/programs/nvm/init.bash"
 fi
 
 # Setup oh_my_posh

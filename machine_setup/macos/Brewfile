@@ -1,0 +1,42 @@
+# Homebrew Bundle file for macOS dotfiles setup
+# Install with: brew bundle --file=<path-to-this-file>
+
+# Taps
+tap "jesseduffield/lazygit"
+tap "azure/functions"
+
+# Core utilities
+brew "bash"           # Latest bash version
+brew "git"
+brew "curl"
+brew "wget"
+brew "jq"
+brew "unzip"
+
+# Development tools - Better alternatives
+brew "bat"            # Better cat with syntax highlighting
+brew "eza"            # Better ls with colors (modern replacement for exa)
+brew "ripgrep"        # Fast grep alternative (rg)
+brew "tree"           # Directory visualization
+brew "socat"          # Socket utility
+
+# Primary development tools matching Ubuntu setup
+brew "neovim"         # Modern Vim-based text editor
+brew "jesseduffield/lazygit/lazygit"  # Git TUI
+brew "tmux"           # Terminal multiplexer
+brew "mise"           # Development environment manager (replaces nvm, asdf, etc.)
+
+# .NET SDK (latest version via cask)
+cask "dotnet-sdk"
+
+# Azure Development Tools
+brew "azure-cli"                           # Azure CLI
+brew "azure-functions-core-tools@4"        # Azure Functions Core Tools
+brew "azcopy"                              # Azure Storage data transfer
+cask "powershell"                          # PowerShell for Azure PowerShell modules
+
+# Note: Bicep is installed via Azure CLI: az bicep install
+
+# Optional: Fonts (can also be installed via fonts.sh script)
+# tap "homebrew/cask-fonts"
+# cask "font-cascadia-code-nerd-font"

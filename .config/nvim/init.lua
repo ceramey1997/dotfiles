@@ -1,2 +1,6 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("cocodust")
+require("cocodust.config.options")
+require("cocodust.config.keymaps")
+
+require("cocodust.config.lazy")
+require("cocodust.config.icons")
+require("cocodust.config.filetypes")
