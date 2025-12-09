@@ -9,11 +9,28 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    optional = true,
     opts = function(_, opts)
-      local nls = require("null-ls")
-      table.insert(opts.sources, nls.builtins.diagnostics.mypy)
-      table.insert(opts.sources, nls.builtins.diagnostics.ruff)
-      table.insert(opts.sources, nls.builtins.formatting.black)
+      if not opts.sources then
+        opts.sources = {}
+      end
+
+      local has_null_ls, nls = pcall(require, "null-ls")
+      if not has_null_ls then
+        return
+      end
+
+      -- Safely try to load each builtin
+      if nls.builtins.diagnostics.mypy then
+        table.insert(opts.sources, nls.builtins.diagnostics.mypy)
+      end
+
+      if nls.builtins.formatting.black then
+        table.insert(opts.sources, nls.builtins.formatting.black)
+      end
+
+      -- Note: ruff support in none-ls may vary by version
+      -- Skipping ruff to avoid errors - use ruff LSP server instead via Mason
     end,
   },
   {

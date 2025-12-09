@@ -3,6 +3,7 @@
 
 # Taps
 tap "jesseduffield/lazygit"
+tap "azure/functions"
 
 # Core utilities
 brew "bash"           # Latest bash version
@@ -27,6 +28,14 @@ brew "mise"           # Development environment manager (replaces nvm, asdf, etc
 
 # .NET SDK (latest version via cask)
 cask "dotnet-sdk"
+
+# Azure Development Tools
+brew "azure-cli"                           # Azure CLI
+brew "azure-functions-core-tools@4"        # Azure Functions Core Tools
+brew "azcopy"                              # Azure Storage data transfer
+cask "powershell"                          # PowerShell for Azure PowerShell modules
+
+# Note: Bicep is installed via Azure CLI: az bicep install
 
 # Optional: Fonts (can also be installed via fonts.sh script)
 # tap "homebrew/cask-fonts"

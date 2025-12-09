@@ -90,6 +90,13 @@ xcode-select --install
 - **.NET SDK**: Latest version
 - **Nerd Fonts**: CascadiaCode for terminal
 
+### macOS-Only Tools
+- **Azure CLI** (`az`): Azure cloud management
+- **Azure Functions Core Tools**: Local Azure Functions development
+- **azcopy**: Fast Azure Storage data transfer
+- **Bicep**: Azure Infrastructure as Code
+- **PowerShell**: For Azure PowerShell modules
+
 ### Linux-Specific
 - **Package Manager**: apt + Ansible
 - **Shell**: Bash with modular configs in `.config/bash/`

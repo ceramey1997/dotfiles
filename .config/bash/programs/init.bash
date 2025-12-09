@@ -13,6 +13,11 @@ if [ -f "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/asdf/init.bash"
 fi
 
+# Setup Azure CLI and tools
+if [ -f "$XDG_CONFIG_HOME/bash/programs/azure/init.bash" ]; then
+    . "$XDG_CONFIG_HOME/bash/programs/azure/init.bash"
+fi
+
 # Setup bicep 
 if [ -f "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash" ]; then
     . "$XDG_CONFIG_HOME/bash/programs/bicep/init.bash"

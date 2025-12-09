@@ -21,7 +21,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        tsserver = {
+        -- tsserver is deprecated, use ts_ls instead
+        ts_ls = {
           init_options = {
             plugins = {
               {
@@ -46,7 +47,11 @@ return {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      vim.list_extend(opts.sources, nls.builtins.formatting.prettierd)
+      -- Safely load prettierd in case it's not available
+      local status_prettierd, prettierd = pcall(function() return nls.builtins.formatting.prettierd end)
+      if status_prettierd then
+        table.insert(opts.sources, prettierd)
+      end
     end
   },
 }

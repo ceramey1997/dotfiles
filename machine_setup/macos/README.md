@@ -58,6 +58,7 @@ source ~/.zshrc
 - **Development tools**: bat, eza, ripgrep, tree, socat
 - **Primary tools**: neovim, lazygit, tmux, mise
 - **.NET SDK**: Latest version via Homebrew cask
+- **Azure tools**: azure-cli, azure-functions-core-tools@4, azcopy, bicep (via Azure CLI), powershell
 
 ### Additional Tools (via installers)
 

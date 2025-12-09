@@ -47,9 +47,23 @@ echo ""
 echo "[5/8] Installing Nerd Fonts..."
 bash "$DOTFILES_DIR/machine_setup/setup/fonts.sh" || { rc=$?; [ $rc -eq 33 ] && echo "✓ Fonts installation complete" || exit $rc; }
 
-# 6. Optional: Install additional .NET SDKs if needed
+# 6. Install Bicep via Azure CLI
 echo ""
-echo "[6/8] Checking .NET SDK installation..."
+echo "[6/8] Installing Bicep..."
+if command -v az &>/dev/null; then
+    if ! az bicep version &>/dev/null; then
+        az bicep install
+        echo "✓ Bicep installed successfully"
+    else
+        echo "✓ Bicep already installed"
+    fi
+else
+    echo "⚠️  Azure CLI not installed yet. Run 'az bicep install' after reloading shell."
+fi
+
+# 7. Optional: Install additional .NET SDKs if needed
+echo ""
+echo "[7/8] Checking .NET SDK installation..."
 if command -v dotnet &>/dev/null; then
     echo "✓ .NET SDK installed:"
     dotnet --list-sdks
@@ -67,9 +81,15 @@ echo "=================================="
 echo ""
 echo "Next steps:"
 echo "1. Run 'source ~/.zshrc' to reload your shell configuration"
-echo "2. Run './post_install.sh' for any additional setup"
-echo "3. Use 'mise use -g node@latest' to install Node.js"
-echo "4. Use 'mise use -g python@latest' to install Python"
+echo "2. Install Node.js: mise use -g node@latest"
+echo "3. Install Python: mise use -g python@latest"
+echo ""
+echo "Azure tools installed:"
+echo "  - Azure CLI (az)"
+echo "  - Azure Functions Core Tools (func)"
+echo "  - azcopy"
+echo "  - PowerShell (pwsh)"
+echo "  - Bicep (az bicep)"
 echo ""
 echo "Learn more about mise: https://mise.jdx.dev"
 echo ""

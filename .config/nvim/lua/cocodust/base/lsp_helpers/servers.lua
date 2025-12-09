@@ -50,24 +50,25 @@ function M.setup(_, opts)
         return
       end
     end
-    require("lspconfig")[server].setup(server_opts)
+    -- Use the new vim.lsp.config API instead of deprecated lspconfig
+    local lspconfig = require("lspconfig")
+    if lspconfig[server] then
+      lspconfig[server].setup(server_opts)
+    end
   end
 
-  -- get all servers that are available through mason-lspconfig
+  -- Setup mason-lspconfig if available
   local have_mason, mlsp = pcall(require, "mason-lspconfig")
-  local all_mlsp_servers = {}
-  if have_mason then
-    all_mlsp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-  end
 
   local ensure_installed = {} --@type string[]
   for server, server_opts in pairs(servers) do
     if server_opts then
       server_opts = server_opts == true and {} or server_opts
-      -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-      if server_opts.mason == false or not vim.tbl_contains(all_mlsp_servers, server) then
+      -- run manual setup if mason=false
+      if server_opts.mason == false then
         setup(server)
       else
+        -- Let mason-lspconfig handle this server
         if server_opts.version then
           ensure_installed[#ensure_installed + 1] = server .. "@" .. server_opts.version
         else
@@ -78,8 +79,16 @@ function M.setup(_, opts)
   end
 
   if have_mason then
-    mlsp.setup({ ensure_installed = ensure_installed })
-    mlsp.setup_handlers({ setup })
+    mlsp.setup({
+      ensure_installed = ensure_installed,
+      automatic_installation = true,
+      handlers = {
+        -- Default handler for all servers
+        function(server_name)
+          setup(server_name)
+        end,
+      },
+    })
   end
 end
 
