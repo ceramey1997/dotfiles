@@ -2,7 +2,6 @@
 # Install with: brew bundle --file=<path-to-this-file>
 
 # Taps
-tap "jesseduffield/lazygit"
 tap "azure/functions"
 
 # Core utilities
@@ -22,7 +21,7 @@ brew "socat"          # Socket utility
 
 # Primary development tools matching Ubuntu setup
 brew "neovim"         # Modern Vim-based text editor
-brew "jesseduffield/lazygit/lazygit"  # Git TUI
+brew "lazygit"	      # Git TUI
 brew "tmux"           # Terminal multiplexer
 brew "mise"           # Development environment manager (replaces nvm, asdf, etc.)
 
@@ -30,10 +29,10 @@ brew "mise"           # Development environment manager (replaces nvm, asdf, etc
 cask "dotnet-sdk"
 
 # Azure Development Tools
-brew "azure-cli"                           # Azure CLI
-brew "azure-functions-core-tools@4"        # Azure Functions Core Tools
-brew "azcopy"                              # Azure Storage data transfer
-cask "powershell"                          # PowerShell for Azure PowerShell modules
+brew "azure-cli"                           	    # Azure CLI
+brew "azure/functions/azure-functions-core-tools@4" # Azure Functions Core Tools
+brew "azcopy"                              	    # Azure Storage data transfer
+cask "powershell"                          	    # PowerShell for Azure PowerShell modules
 
 # Note: Bicep is installed via Azure CLI: az bicep install
 
