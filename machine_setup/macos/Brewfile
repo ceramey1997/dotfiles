@@ -23,7 +23,9 @@ brew "socat"          # Socket utility
 brew "neovim"         # Modern Vim-based text editor
 brew "lazygit"	      # Git TUI
 brew "tmux"           # Terminal multiplexer
+brew "herdr"          # Terminal multiplexer
 brew "mise"           # Development environment manager (replaces nvm, asdf, etc.)
+cask "claude-code"    # AI development
 
 # .NET SDK (latest version via cask)
 cask "dotnet-sdk"
