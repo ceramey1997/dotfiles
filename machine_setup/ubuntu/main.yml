@@ -29,6 +29,65 @@
           - socat
           - ripgrep
           - tree
+          - gpg  # Required for 1Password CLI installation
+        state: latest
+
+    - name: "Add 1Password CLI repository key"
+      become: yes
+      become_user: root
+      shell: |
+        curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+        gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+      args:
+        creates: /usr/share/keyrings/1password-archive-keyring.gpg
+
+    - name: "Add 1Password CLI repository"
+      become: yes
+      become_user: root
+      shell: |
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | \
+        tee /etc/apt/sources.list.d/1password.list
+      args:
+        creates: /etc/apt/sources.list.d/1password.list
+
+    - name: "Add 1Password debsig-verify policy"
+      become: yes
+      become_user: root
+      shell: |
+        mkdir -p /etc/debsig/policies/AC2D62742012EA22/
+        curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+        tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+      args:
+        creates: /etc/debsig/policies/AC2D62742012EA22/1password.pol
+
+    - name: "Create debsig keyrings directory"
+      become: yes
+      become_user: root
+      file:
+        path: /usr/share/debsig/keyrings/AC2D62742012EA22
+        state: directory
+        mode: '0755'
+
+    - name: "Add 1Password debsig-verify keyring"
+      become: yes
+      become_user: root
+      shell: |
+        curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+        gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+      args:
+        creates: /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+    - name: "Update apt cache for 1Password"
+      become: yes
+      become_user: root
+      apt:
+        update_cache: yes
+
+    - name: "Install 1Password CLI"
+      become: yes
+      become_user: root
+      apt:
+        name: 1password-cli
         state: latest
 
     #- name: "Install asdf"

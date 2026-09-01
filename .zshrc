@@ -55,3 +55,4 @@ done
 if [ -f ~/.config/zsh/aliases.zsh ]; then
     source ~/.config/zsh/aliases.zsh
 fi
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"

@@ -12,6 +12,9 @@ brew "wget"
 brew "jq"
 brew "unzip"
 
+# 1Password CLI for SSH key management
+cask "1password-cli"
+
 # Development tools - Better alternatives
 brew "bat"            # Better cat with syntax highlighting
 brew "eza"            # Better ls with colors (modern replacement for exa)

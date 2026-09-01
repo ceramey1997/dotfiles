@@ -21,6 +21,7 @@ fi
 alias reload='source ~/.zshrc'
 alias zshconfig='$EDITOR ~/.zshrc'
 alias dotfiles='cd ~/.dotfiles'
+alias help='cat ~/Help.md'
 
 # macOS specific
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
